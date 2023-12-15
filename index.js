@@ -20,6 +20,12 @@ db.serialize(() => {
 
 app.post("/cats", (req, res) => {
   const name = req.body.name;
+
+  if (!name) {
+    res.status(400).send("O nome do animal (campo name) é obrigatório");
+    return;
+  }
+
   db.run(
     `INSERT INTO cats (name, votes) VALUES ('${name}', 0)`,
     function (err) {
@@ -34,6 +40,12 @@ app.post("/cats", (req, res) => {
 
 app.post("/dogs", (req, res) => {
   const name = req.body.name;
+
+  if (!name) {
+    res.status(400).send("O nome do animal (campo name) é obrigatório");
+    return;
+  }
+
   db.run(
     `INSERT INTO dogs (name, votes) VALUES ('${name}', 0)`,
     function (err) {
