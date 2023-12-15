@@ -1,8 +1,9 @@
 # 20232BSET03P2
 Inteli - Engenharia de Software | Avaliação 2023-2B P2
 
-## Vulnarabilidades e problemas encontradas com suas respectivas correções 
+## Vulnerabilidades e problemas encontradas com suas respectivas correções 
 
+### Id como primary key
 - Inicialmente o id estava como int e deveria ser adicionado um número inteiro, foi feita a correção para que o id fosse adicionado ao banco de forma automatica com 'INTEGER PRIMARY KEY AUTOINCREMENT'
   Anteriormente:
   
@@ -14,8 +15,18 @@ CREATE TABLE cats (id INT, name TEXT, votes INT)
 ```sql
 CREATE TABLE cats (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, votes INT)
 ```
+
+### Nome do animal 
+- O nome do animal não estava sendo obrigátorio na hora da realização do post /cats ou /dogs e a lógica foi corrigida com o código a seguir
+
+```sql
+ if (!name) {
+    res.status(400).send("O nome do animal (campo name) é obrigatório");
+    return;
+  }
+```
   
-## Endpoint post '/dogs'
+### Endpoint post '/dogs'
 - Estava sem a lógica do post, então foi adicionado a lógica da mesma forma como estava feita com o endpoint post '/cats'
 
 ```sql
